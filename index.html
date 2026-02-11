@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="E-Money Custom untuk Hampers Lebaran. Kartu e-toll custom design - Flazz, Brizzi, Tapcash, Emoney. Promo terbatas!">
+    <title>E-Money Custom Hampers Lebaran - Promo Terbatas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'lebaran': {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            200: '#bbf7d0',
+                            300: '#86efac',
+                            400: '#4ade80',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                            950: '#052e16',
+                        },
+                        'emas': {
+                            50: '#fffbeb',
+                            100: '#fef3c7',
+                            200: '#fde68a',
+                            300: '#fcd34d',
+                            400: '#fbbf24',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                            700: '#b45309',
+                            800: '#92400e',
+                            900: '#78350f',
+                            950: '#451a03',
+                        }
+                    },
+                    fontFamily: {
+                        'poppins': ['Poppins', 'sans-serif'],
+                        'playfair': ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .islamic-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2316a34a' fill-opacity='0.03'%3E%3Cpath d='M40 40c0-11.046-8.954-20-20-20s-20 8.954-20 20 8.954 20 20 20 20-8.954 20-20zm40 0c0-11.046-8.954-20-20-20s-20 8.954-20 20 8.954 20 20 20 20-8.954 20-20z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        .pulse-emas {
+            animation: pulse-emas 2s infinite;
+        }
+        @keyframes pulse-emas {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7); }
+            70% { box-shadow: 0 0 0 20px rgba(245, 158, 11, 0); }
+        }
+        .shimmer {
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            background-size: 200% 100%;
+            animation: shimmer 2s infinite;
+        }
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        .card-3d {
+            transform-style: preserve-3d;
+            transition: transform 0.3s ease;
+        }
+        .card-3d:hover {
+            transform: rotateY(5deg) rotateX(5deg) translateY(-10px);
+        }
+        .scrolling-text {
+            animation: scroll-left 25s linear infinite;
+        }
+        @keyframes scroll-left {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .price-tag {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 50%, #b45309 100%);
+            clip-path: polygon(0 0, 100% 0, 95% 100%, 5% 100%);
+        }
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #f59e0b 0%, #fcd34d 50%, #fbbf24 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+    </style>
+</head>
+<body class="font-poppins bg-gradient-to-b from-lebaran-50 to-white text-gray-800 overflow-x-hidden">
+    
+    <!-- Urgency Bar -->
+    <div class="bg-gradient-to-r from-red-600 via-red-700 to-red-800 text-white py-2.5 px-4 text-center relative overflow-hidden">
+        <div class="shimmer absolute inset-0"></div>
+        <p class="relative z-10 text-sm md:text-base font-semibold">
+            <i class="fas fa-mosque mr-2"></i>
+            🎁 PROMO HAMPERS LEBARAN — Sisa <span class="font-bold underline">43 SLOT</span> — Berakhir Dalam:
+            <span id="countdown-top" class="font-mono font-bold ml-2 text-yellow-300">23:59:59</span>
+            <i class="fas fa-mosque ml-2"></i>
+        </p>
+    </div>
+
+    <!-- Sticky CTA Mobile -->
+    <div id="sticky-cta" class="fixed bottom-0 left-0 right-0 bg-white border-t border-emas-200 shadow-2xl z-50 transform translate-y-full transition-transform duration-300 md:hidden">
+        <div class="px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-8 bg-gradient-to-r from-emas-400 to-emas-600 rounded flex items-center justify-center text-white font-bold text-xs">E-M</div>
+                <div>
+                    <p class="text-xs text-gray-500">Mulai dari</p>
+                    <p class="text-lg font-bold text-red-600">Rp55.000</p>
+                </div>
+            </div>
+            <button onclick="scrollToForm()" class="pulse-emas bg-gradient-to-r from-emas-500 to-emas-600 text-white font-bold py-2.5 px-5 rounded-lg text-sm">
+                Pesan Sekarang
+            </button>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen islamic-pattern overflow-hidden">
+        <!-- Background Gradient -->
+        <div class="absolute inset-0 bg-gradient-to-br from-lebaran-900 via-lebaran-800 to-lebaran-950"></div>
+        <!-- Decorative Elements -->
+        <div class="absolute top-0 left-0 w-full h-full opacity-10">
+            <div class="absolute top-10 left-10 text-emas-400 text-6xl">☪</div>
+            <div class="absolute top-20 right-20 text-emas-400 text-4xl">✦</div>
+            <div class="absolute bottom-40 left-20 text-emas-400 text-5xl">❋</div>
+            <div class="absolute bottom-20 right-10 text-emas-400 text-6xl">☪</div>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
+            <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+                
+                <!-- Left Content -->
+                <div class="text-center lg:text-left">
+                    <!-- Seasonal Badge -->
+                    <div class="inline-flex items-center gap-2 bg-emas-500/20 border border-emas-400/50 rounded-full px-4 py-2 mb-6">
+                        <i class="fas fa-gift text-emas-400"></i>
+                        <span class="text-emas-300 text-sm font-semibold">Edisi Spesial Lebaran 2025</span>
+                    </div>
+
+                    <!-- Headline -->
+                    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
+                        <span class="gradient-text">E-Money Custom</span>
+                        <span class="block mt-2">Hampers Lebaran</span>
+                        <span class="block text-2xl sm:text-3xl md:text-4xl font-playfair italic text-emas-300 mt-2">Yang Berkesan & Bermanfaat</span>
+                    </h1>
+
+                    <!-- Subheadline -->
+                    <p class="text-base sm:text-lg md:text-xl text-gray-300 mb-6 leading-relaxed">
+                        Lupakan hampers kurma atau kue kering yang biasa-biasa saja. 
+                        <span class="text-emas-400 font-semibold">Kartu e-toll custom dengan nama/logo</span> — hadiah unik yang 
+                        dipakai setiap hari, bukan ditelan dalam semalam.
+                    </p>
+
+                    <!-- Benefits Pills -->
+                    <div class="flex flex-wrap justify-center lg:justify-start gap-2 mb-8">
+                        <span class="bg-white/10 backdrop-blur text-emas-300 px-3 py-1.5 rounded-full text-sm border border-emas-500/30"><i class="fas fa-check mr-1"></i>Bisa Custom Nama</span>
+                        <span class="bg-white/10 backdrop-blur text-emas-300 px-3 py-1.5 rounded-full text-sm border border-emas-500/30"><i class="fas fa-check mr-1"></i>Semua Bank Support</span>
+                        <span class="bg-white/10 backdrop-blur text-emas-300 px-3 py-1.5 rounded-full text-sm border border-emas-500/30"><i class="fas fa-check mr-1"></i>Siap Pakai</span>
+                        <span class="bg-white/10 backdrop-blur text-emas-300 px-3 py-1.5 rounded-full text-sm border border-emas-500/30"><i class="fas fa-check mr-1"></i>Gratis Ongkir</span>
+                    </div>
+
+                    <!-- Problem Agitation -->
+                    <div class="glass-effect rounded-2xl p-5 mb-8 text-left">
+                        <p class="text-emas-300 font-semibold mb-3 text-sm uppercase tracking-wider">💡 Masih Bingung Cari Hampers?</p>
+                        <ul class="space-y-2 text-gray-300 text-sm">
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-times-circle text-red-400 mt-0.5"></i>
+                                <span>Kue Lebaran harganya mahal, tapi dimakan cuma 1-2 hari?</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-times-circle text-red-400 mt-0.5"></i>
+                                <span>Parcel hanya pajangan, terus dibiarkan berdebu?</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-times-circle text-red-400 mt-0.5"></i>
+                                <span>Mau kasih uang tapi takut dianggap pamer?</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i class="fas fa-check-circle text-emas-400 mt-0.5"></i>
+                                <span class="text-emas-300 font-semibold">E-Money Custom = Dikenang setiap transaksi tol/parkir!</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Price Display -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 sm:gap-4 mb-6">
+                        <div class="text-gray-400 text-center sm:text-left">
+                            <p class="text-xs sm:text-sm">Harga Normal</p>
+                            <p class="text-xl sm:text-2xl line-through">Rp85.000</p>
+                        </div>
+                        <div class="price-tag px-4 sm:px-6 py-2 sm:py-3 text-white">
+                            <p class="text-[10px] sm:text-xs opacity-90">Promo Lebaran</p>
+                            <p class="text-3xl sm:text-4xl font-extrabold">Rp55.000</p>
+                        </div>
+                        <div class="bg-red-600 text-white px-2 sm:px-3 py-1 rounded text-xs sm:text-sm font-bold">
+                            SAVE Rp30K
+                        </div>
+                    </div>
+
+                    <!-- Scarcity Note -->
+                    <p class="text-red-400 font-semibold text-sm mb-6">
+                        <i class="fas fa-fire mr-1"></i>>️ 157 orang sudah pesan — Sisa 43 slot untuk batch Lebaran
+                    </p>
+
+                    <!-- CTA Button -->
+                    <button onclick="scrollToForm()" class="pulse-emas w-full lg:w-auto bg-gradient-to-r from-emas-500 via-emas-400 to-emas-500 hover:from-emas-400 hover:via-emas-300 hover:to-emas-400 text-lebaran-950 font-extrabold text-base sm:text-lg py-4 sm:py-5 px-8 sm:px-12 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-2xl shadow-emas-500/30">
+                        <i class="fas fa-gift mr-2"></i>
+                        PESAN HAMPERS SEKARANG
+                    </button>
+                    
+                    <p class="text-gray-400 text-xs mt-4">
+                        <i class="fas fa-shield-alt mr-1"></i> Garansi 100% Uang Kembali | <i class="fas fa-truck mr-1"></i> Gratis Ongkir
+                    </p>
+                </div>
+
+                <!-- Right Content - Product Showcase -->
+                <div class="relative flex justify-center items-center">
+                    <!-- Decorative glow -->
+                    <div class="absolute w-64 h-64 md:w-80 md:h-80 bg-emas-500/30 rounded-full blur-3xl"></div>
+                    
+                    <!-- Cards Stack -->
+                    <div class="relative floating">
+                        <!-- Main Card -->
+                        <div class="relative z-10 w-64 sm:w-72 md:w-80">
+                            <div class="bg-gradient-to-br from-emas-400 via-emas-500 to-emas-600 rounded-2xl p-1 shadow-2xl">
+                                <div class="bg-gradient-to-br from-lebaran-800 to-lebaran-900 rounded-xl p-4">
+                                    <!-- Card Header -->
+                                    <div class="flex justify-between items-center mb-4">
+                                        <span class="text-emas-400 text-xs font-bold">Flazz BCA</span>
+                                        <span class="text-emas-400"><i class="fas fa-wifi"></i></span>
+                                    </div>
+                                    
+                                    <!-- Card Chip -->
+                                    <div class="flex gap-2 mb-4">
+                                        <div class="w-10 h-8 bg-gradient-to-br from-emas-300 to-emas-500 rounded"></div>
+                                        <div class="w-6 h-8 bg-gradient-to-br from-emas-400 to-emas-600 rounded"></div>
+                                    </div>
+                                    
+                                    <!-- Card Number -->
+                                    <p class="text-emas-200 font-mono text-lg tracking-wider mb-2">**** **** **** 1234</p>
+                                    
+                                    <!-- Card Name -->
+                                    <p class="text-white font-semibold text-sm">NAMA ANDA</p>
+                                    
+                                    <!-- Decorative -->
+                                    <div class="mt-4 flex justify-between items-end">
+                                        <span class="text-emas-400 text-xs">E-MONEY CUSTOM</span>
+                                        <div class="text-emas-400 text-2xl">☪</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Ribbon -->
+                            <div class="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
+                                BEST SELLER
+                            </div>
+                        </div>
+                        
+                        <!-- Secondary Cards -->
+                        <div class="absolute -top-4 -left-8 sm:-left-12 w-24 sm:w-28 opacity-80 transform -rotate-12">
+                            <div class="bg-gradient-to-br from-blue-600 to-blue-800 rounded-xl p-2">
+                                <p class="text-white text-[8px]">Tapcash</p>
+                                <div class="w-6 h-4 bg-emas-400 rounded mt-1"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="absolute -bottom-4 -right-8 sm:-right-12 w-24 sm:w-28 opacity-80 transform rotate-12">
+                            <div class="bg-gradient-to-br from-red-600 to-red-800 rounded-xl p-2">
+                                <p class="text-white text-[8px]">Brizzi</p>
+                                <div class="w-6 h-4 bg-emas-400 rounded mt-1"></div>
+                            </div>
+                        </div>
+                    </divమ
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <i class="fas fa-chevron-down text-emas-400 text-2xl"></i>
+        </div>
+    </section>
+
+    <!-- Scrolling Social Proof -->
+    <div class="bg-lebaran-800 py-4 overflow-hidden border-y border-emas-500/20">
+        <div class="flex whitespace-nowrap">
+            <div class="scrolling-text flex gap-12 items-center">
+                <div class="flex items-center gap-2 text-emas-300">
+                    <i class="fas fa-check-circle"></i>
+                    <span class="font-semibold">"Klien saya senang banget dikasih ini!" - Andi, Jakarta</span>
+                </div>
+                <div class="flex items-center gap-2 text-emas-300">
+                    <i class="fas fa-check-circle"></i>
+                    <span class="font-semibold">"Lebih berkesan daripada parcel biasa" - Maya, Surabaya</span>
+                </div>
+                <div class="flex items-center gap-2 text-emas-300">
+                    <i class="fas fa-check-circle"></i>
+                    <span class="font-semibold">"Dipakai terus sama teman kantor" - Budi, Bandung</span>
+                </div>
+                <div class="flex items-center gap-2 text-emas-300">
+                    <i class="fas fa-check-circle"></i>
+                    <span class="font-semibold">"Bisa custom nama, recommended!" - Sari, Medan</span>
+                </div>
+                <!-- Duplicate -->
+                <div class="flex items-center gap-2 text-emas-300">
+                    <i class="fas fa-check-circle"></i>
+                    <span class="font-semibold">"Klien saya senang banget dikasih ini!" - Andi, Jakarta</span>
+                </div>
+                <div class="flex items-center gap-2 text-emas-300">
+                    <i class="fas fa-check-circle"></i>
+                    <span class="font-semibold">"Lebih berkesan daripada parcel biasa" - Maya, Surabaya</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Supported Banks -->
+    <section class="py-16 bg-white">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <span class="text-lebaran-600 font-semibold text-sm uppercase tracking-wider">Semua Bank Support</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mt-2">Pilih Kartu Favorit Anda</h2>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <!-- BCA Flazz -->
+                <div class="group bg-gradient-to-br from-blue-600 to-blue-800 rounded-2xl p-6 text-center hover:shadow-2xl hover:scale-105 transition-all duration-300 cursor-pointer">
+                    <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-white/30 transition-colors">
+                        <i class="fas fa-credit-card text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-white font-bold text-lg">BCA</h3>
+                    <p class="text-blue-200 text-sm">Flazz</p>
+                </div>
+
+                <!-- Mandiri E-Money -->
+                <div class="group bg-gradient-to-br from-yellow-500 to-yellow-700 rounded-2xl p-6 text-center hover:shadow-2xl hover:scale-105 transition-all duration-300 cursor-pointer">
+                    <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-white/30 transition-colors">
+                        <i class="fas fa-credit-card text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-white font-bold text-lg">Mandiri</h3>
+                    <p class="text-yellow-100 text-sm">E-Money</p>
+                </div>
+
+                <!-- BRI Brizzi -->
+                <div class="group bg-gradient-to-br from-red-600 to-red-800 rounded-2xl p-6 text-center hover:shadow-2xl hover:scale-105 transition-all duration-300 cursor-pointer">
+                    <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-white/30 transition-colors">
+                        <i class="fas fa-credit-card text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-white font-bold text-lg">BRI</h3>
+                    <p class="text-red-100 text-sm">Brizzi</p>
+                </div>
+
+                <!-- BNI Tapcash -->
+                <div class="group bg-gradient-to-br from-emerald-600 to-emerald-800 rounded-2xl p-6 text-center hover:shadow-2xl hover:scale-105 transition-all duration-300 cursor-pointer">
+                    <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-white/30 transition-colors">
+                        <i class="fas fa-credit-card text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-white font-bold text-lg">BNI</h3>
+                    <p class="text-emerald-100 text-sm">Tapcash</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="py-20 bg-gradient-to-br from-lebaran-50 to-emas-50">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <span class="text-lebaran-600 font-semibold text-sm uppercase tracking-wider">Keunggulan</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mt-2">Kenapa E-Money Custom?</h2>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Benefit 1 -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-shadow">
+                    <div class="w-16 h-16 bg-gradient-to-br from-emas-400 to-emas-600 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-heart text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Berkesan & Bermakna</h3>
+                    <p class="text-gray-600">Setiap kali penerima pakai kartu ini untuk tol/parkir, mereka akan ingat Anda. Hadiah yang terus memberi kenangan.</p>
+                </div>
+
+                <!-- Benefit 2 -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-shadow">
+                    <div class="w-16 h-16 bg-gradient-to-br from-lebaran-500 to-lebaran-700 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-paint-brush text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Bisa Custom Design</h3>
+                    <p class="text-gray-600">Tambahkan nama, logo perusahaan, atau ucapan personal. Buat hampers Anda berbeda dari yang lain.</p>
+                </div>
+
+                <!-- Benefit 3 -->
+                <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-shadow">
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-700 rounded-2xl flex items-center justify-center mb-6">
+                        <i class="fas fa-wallet text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Praktis & Berguna</h3>
+                    <p class="text-gray-600">Bisa dipakai untuk tol, parkir, transportasi umum, dan ribuan merchant. Bukan hadiah yang cuma dipajang.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Who Is It For -->
+    <section class="py-20 bg-lebaran-900">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <span class="text-emas-400 font-semibold text-sm uppercase tracking-wider">Untuk Siapa?</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-white mt-2">Cocok Untuk...</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="glass-effect rounded-2xl p-6 text-center">
+                    <div class="text-emas-400 text-4xl mb-4">👨‍👩‍👧‍👦</div>
+                    <h3 class="text-white font-bold mb-2">Keluarga & Kerabat</h3>
+                    <p class="text-gray-400 text-sm">Hampers Idul Fitri yang berkesan untuk sanak saudara</p>
+                </div>
+
+                <div class="glass-effect rounded-2xl p-6 text-center">
+                    <div class="text-emas-400 text-4xl mb-4">🤝</div>
+                    <h3 class="text-white font-bold mb-2">Rekan Kerja</h3>
+                    <p class="text-gray-400 text-sm">THR unik untuk teman kantor dan atasan</p>
+                </div>
+
+                <div class="glass-effect rounded-2xl p-6 text-center">
+                    <div class="text-emas-400 text-4xl mb-4">💼</div>
+                    <h3 class="text-white font-bold mb-2">Klien & Relasi Bisnis</h3>
+                    <p class="text-gray-400 text-sm">Corporate gift yang profesional dan bermanfaat</p>
+                </div>
+
+                <div class="glass-effect rounded-2xl p-6 text-center">
+                    <div class="text-emas-400 text-4xl mb-4">🎁</div>
+                    <h3 class="text-white font-bold mb-2">Sahabat</h3>
+                    <p class="text-gray-400 text-sm">Kado lebaran yang lucu dan berguna untuk teman</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scarcity Section -->
+    <section class="py-16 bg-red-600">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <i class="fas fa-fire text-white text-5xl mb-6 animate-pulse"></i>
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
+                ⏰ WAKTU TERBATAS!
+            </h2>
+            <p class="text-xl text-red-100 mb-8">
+                Kami hanya menerima <span class="font-bold text-white underline">200 pesanan</span> untuk batch Lebaran 2025 dan <span class="font-bold text-white">157 sudah terisi!</span>
+            </p>
+            
+            <!-- Progress Bar -->
+            <div class="bg-red-800 rounded-full h-8 mb-4 overflow-hidden">
+                <div class="bg-gradient-to-r from-emas-400 to-emas-500 h-full rounded-full transition-all duration-1000 flex items-center justify-end pr-3" style="width: 78.5%">
+                    <span class="text-lebaran-900 font-bold text-sm">78% Sold</span>
+                </div>
+            </div>
+            <p class="text-red-100 text-sm mb-8">
+                <span class="font-bold text-white text-xl">Sisa 43 slot</span> — Setelah ini harga naik + promo berakhir
+            </p>
+
+            <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+                <p class="text-white text-lg mb-4">Promo berakhir dalam:</p>
+                <div class="flex justify-center gap-4" id="countdown-large">
+                    <div class="bg-white rounded-xl px-4 sm:px-6 py-3">
+                        <p class="text-3xl sm:text-4xl font-bold text-red-600" id="hours">23</p>
+                        <p class="text-xs text-gray-600">Jam</p>
+                    </div>
+                    <div class="bg-white rounded-xl px-4 sm:px-6 py-3">
+                        <p class="text-3xl sm:text-4xl font-bold text-red-600" id="minutes">59</p>
+                        <p class="text-xs text-gray-600">Menit</p>
+                    </div>
+                    <div class="bg-white rounded-xl px-4 sm:px-6 py-3">
+                        <p class="text-3xl sm:text-4xl font-bold text-red-600" id="seconds">59</p>
+                        <p class="text-xs text-gray-600">Detik</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Order Form Section -->
+    <section id="order-form" class="py-20 bg-gradient-to-br from-lebaran-900 to-lebaran-800">
+        <div class="max-w-2xl mx-auto px-4">
+            <div class="bg-white rounded-3xl shadow-2xl overflow-hidden">
+                <!-- Header -->
+                <div class="bg-gradient-to-r from-emas-500 to-emas-600 p-6 text-center relative overflow-hidden">
+                    <div class="shimmer absolute inset-0"></div>
+                    <h2 class="text-2xl font-bold text-lebaran-900 relative z-10">🎁 Form Pemesanan</h2>
+                    <p class="text-lebaran-800 relative z-10">Isi data dengan lengkap untuk pengiriman cepat</p>
+                </div>
+
+                <!-- Form -->
+                <div class="p-6 md:p-8">
+                    <!-- Stock Warning -->
+                    <div class="bg-red-50 border border-red-200 rounded-xl p-4 mb-6 flex items-center gap-3">
+                        <i class="fas fa-exclamation-circle text-red-500 text-xl"></i>
+                        <div>
+                            <p class="text-red-700 font-semibold text-sm">Segera! Hanya tersisa 43 slot</p>
+                            <p class="text-red-600 text-xs">8 orang sedang mengisi form ini sekarang</p>
+                        </div>
+                    </div>
+
+                    <form id="checkout-form" onsubmit="handleSubmit(event)">
+                        <!-- Name -->
+                        <div class="mb-4">
+                            <label class="block text-gray-700 font-semibold mb-2">
+                                Nama Lengkap <span class="text-red-500">*</span>
+                            </label>
+                            <input type="text" name="name" required 
+                                placeholder="Masukkan nama lengkap Anda"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emas-400 focus:border-transparent outline-none transition-all">
+                        </div>
+
+                        <!-- WhatsApp -->
+                        <div class="mb-4">
+                            <label class="block text-gray-700 font-semibold mb-2">
+                                Nomor WhatsApp <span class="text-red-500">*</span>
+                            </label>
+                            <div class="relative">
+                                <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 font-semibold">+62</span>
+                                <input type="tel" name="phone" required 
+                                    placeholder="81234567890" 
+                                    class="w-full pl-14 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emas-400 focus:border-transparent outline-none transition-all"
+                                    oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                            </div>
+                            <p class="text-gray-500 text-xs mt-1">Contoh: 81234567890 (tanpa 0 di depan)</p>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="mb-4">
+                            <label class="block text-gray-700 font-semibold mb-2">
+                                Alamat Email <span class="text-red-500">*</span>
+                            </label>
+                            <input type="email" name="email" required 
+                                placeholder="email@example.com"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emas-400 focus:border-transparent outline-none transition-all">
+                        </div>
+
+                        <!-- Address -->
+                        <div class="mb-4">
+                            <label class="block text-gray-700 font-semibold mb-2">
+                                Alamat Lengkap <span class="text-red-500">*</span>
+                            </label>
+                            <textarea name="address" required rows="3" 
+                                placeholder="Jalan, RT/RW, Kelurahan, Kecamatan, Kota, Kode Pos"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emas-400 focus:border-transparent outline-none transition-all resize-none"></textarea>
+                        </div>
+
+                        <!-- District -->
+                        <div class="mb-4">
+                            <label class="block text-gray-700 font-semibold mb-2">
+                                Kecamatan <span class="text-red-500">*</span>
+                            </label>
+                            <input type="text" name="district" required 
+                                placeholder="Nama kecamatan"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emas-400 focus:border-transparent outline-none transition-all">
+                        </div>
+
+                        <!-- Bank Selection -->
+                        <div class="mb-4">
+                            <label class="block text-gray-700 font-semibold mb-2">
+                                Pilih Kartu <span class="text-red-500">*</span>
+                            </label>
+                            <div class="grid grid-cols-2 gap-3">
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="card" value="flazz" required class="peer hidden">
+                                    <div class="border-2 border-gray-200 peer-checked:border-blue-500 peer-checked:bg-blue-50 rounded-xl p-3 text-center transition-all hover:border-blue-300">
+                                        <p class="font-semibold text-gray-700 peer-checked:text-blue-700">Flazz BCA</p>
+                                        <p class="text-xs text-gray-500">Rp55.000</p>
+                                    </div>
+                                </label>
+                                
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="card" value="emoney" required class="peer hidden">
+                                    <div class="border-2 border-gray-200 peer-checked:border-yellow-500 peer-checked:bg-yellow-50 rounded-xl p-3 text-center transition-all hover:border-yellow-300">
+                                        <p class="font-semibold text-gray-700 peer-checked:text-yellow-700">E-Money</p>
+                                        <p class="text-xs text-gray-500">Rp55.000</p>
+                                    </div>
+                                </label>
+                                
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="card" value="brizzi" required class="peer hidden">
+                                    <div class="border-2 border-gray-200 peer-checked:border-red-500 peer-checked:bg-red-50 rounded-xl p-3 text-center transition-all hover:border-red-300">
+                                        <p class="font-semibold text-gray-700 peer-checked:text-red-700">Brizzi</p>
+                                        <p class="text-xs text-gray-500">Rp55.000</p>
+                                    </div>
+                                </label>
+                                
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="card" value="tapcash" required class="peer hidden">
+                                    <div class="border-2 border-gray-200 peer-checked:border-emerald-500 peer-checked:bg-emerald-50 rounded-xl p-3 text-center transition-all hover:border-emerald-300">
+                                        <p class="font-semibold text-gray-700 peer-checked:text-emerald-700">Tapcash</p>
+                                        <p class="text-xs text-gray-500">Rp55.000</p>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Custom Design -->
+                        <div class="mb-4">
+                            <label class="block text-gray-700 font-semibold mb-2">
+                                Nama/Kata Custom (Opsional)
+                            </label>
+                            <input type="text" name="custom" 
+                                placeholder="Contoh: 'Selamat Lebaran' atau nama penerima"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emas-400 focus:border-transparent outline-none transition-all">
+                            <p class="text-gray-500 text-xs mt-1">Maksimal 20 karakter. Kosongkan jika tidak perlu custom.</p>
+                        </div>
+
+                        <!-- Quantity -->
+                        <div class="mb-4">
+                            <label class="block text-gray-700 font-semibold mb-2">
+                                Jumlah Kartu <span class="text-red-500">*</span>
+                            </label>
+                            <div class="flex items-center gap-4">
+                                <button type="button" onclick="changeQty(-1)" class="w-12 h-12 bg-gray-100 hover:bg-gray-200 rounded-xl flex items-center justify-center transition-colors">
+                                    <i class="fas fa-minus text-gray-600"></i>
+                                </button>
+                                <input type="number" name="quantity" id="quantity" value="1" min="1" max="50" readonly
+                                    class="w-24 text-center py-3 border border-gray-300 rounded-xl font-bold text-xl">
+                                <button type="button" onclick="changeQty(1)" class="w-12 h-12 bg-gray-100 hover:bg-gray-200 rounded-xl flex items-center justify-center transition-colors">
+                                    <i class="fas fa-plus text-gray-600"></i>
+                                </button>
+                            </div>
+                            <p class="text-emas-600 text-xs mt-2"><i class="fas fa-tag mr-1"></i>Harga spesial untuk pembelian 10+ pcs: Rp50.000/kartu</p>
+                        </div>
+
+                        <!-- Courier -->
+                        <div class="mb-4">
+                            <label class="block text-gray-700 font-semibold mb-2">
+                                Pilihan Kurir <span class="text-red-500">*</span>
+                            </label>
+                            <div class="grid grid-cols-3 gap-3">
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="courier" value="jne" required class="peer hidden">
+                                    <div class="border-2 border-gray-200 peer-checked:border-emas-500 peer-checked:bg-emas-50 rounded-xl p-3 text-center transition-all hover:border-emas-300">
+                                        <p class="font-semibold text-gray-700 peer-checked:text-emas-700">JNE</p>
+                                    </div>
+                                </label>
+                                
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="courier" value="jnt" required class="peer hidden">
+                                    <div class="border-2 border-gray-200 peer-checked:border-emas-500 peer-checked:bg-emas-50 rounded-xl p-3 text-center transition-all hover:border-emas-300">
+                                        <p class="font-semibold text-gray-700 peer-checked:text-emas-700">J&T</p>
+                                    </div>
+                                </label>
+                                
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="courier" value="sicepat" required class="peer hidden">
+                                    <div class="border-2 border-gray-200 peer-checked:border-emas-500 peer-checked:bg-emas-50 rounded-xl p-3 text-center transition-all hover:border-emas-300">
+                                        <p class="font-semibold text-gray-700 peer-checked:text-emas-700">SiCepat</p>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Payment Method -->
+                        <div class="mb-6">
+                            <label class="block text-gray-700 font-semibold mb-2">
+                                Metode Pembayaran <span class="text-red-500">*</span>
+                            </label>
+                            <div class="grid grid-cols-2 gap-4">
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="payment" value="bca" required class="peer hidden">
+                                    <div class="border-2 border-gray-200 peer-checked:border-blue-500 peer-checked:bg-blue-50 rounded-xl p-4 text-center transition-all hover:border-blue-300">
+                                        <i class="fas fa-university text-2xl text-gray-400 peer-checked:text-blue-600 mb-2"></i>
+                                        <p class="font-semibold text-gray-700 peer-checked:text-blue-700">BCA</p>
+                                    </div>
+                                </label>
+                                
+                                <label class="cursor-pointer">
+                                    <input type="radio" name="payment" value="mandiri" required class="peer hidden">
+                                    <div class="border-2 border-gray-200 peer-checked:border-yellow-500 peer-checked:bg-yellow-50 rounded-xl p-4 text-center transition-all hover:border-yellow-300">
+                                        <i class="fas fa-university text-2xl text-gray-400 peer-checked:text-yellow-600 mb-2"></i>
+                                        <p class="font-semibold text-gray-700 peer-checked:text-yellow-700">Mandiri</p>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Order Summary -->
+                        <div class="bg-lebaran-50 rounded-xl p-4 mb-6">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-600">Harga per kartu</span>
+                                <span class="font-semibold" id="price-per-unit">Rp55.000</span>
+                            </div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-600">Jumlah</span>
+                                <span class="font-semibold" id="summary-qty">1</span>
+                            </div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-600">Ongkir</span>
+                                <span class="text-green-600 font-semibold">GRATIS</span>
+                            </div>
+                            <div class="border-t border-gray-200 pt-2 mt-2">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-lg font-bold text-gray-900">TOTAL</span>
+                                    <span class="text-2xl font-bold text-emas-600" id="summary-total">Rp55.000</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" id="submit-btn" class="w-full bg-gradient-to-r from-emas-500 to-emas-600 hover:from-emas-600 hover:to-emas-700 text-lebaran-900 font-extrabold text-lg py-4 rounded-xl transition-all duration-300 transform hover:scale-[1.02] shadow-lg flex items-center justify-center gap-2">
+                            <i class="fas fa-gift"></i>
+                            PESAN SEKARANG
+                        </button>
+
+                        <p class="text-center text-gray-500 text-sm mt-4">
+                            <i class="fas fa-lock mr-1"></i> Pembayaran aman & terenkripsi
+                        </p>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Guarantee Box -->
+            <div class="mt-8 bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
+                <div class="flex items-center gap-4">
+                    <div class="w-16 h-16 bg-emas-500 rounded-full flex items-center justify-center flex-shrink-0">
+                        <i class="fas fa-shield-alt text-lebaran-900 text-2xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-white font-bold text-lg">Garansi 100% Uang Kembali</h3>
+                        <p class="text-gray-300 text-sm">Jika produk tidak sesuai atau rusak saat sampai, uang Anda kembali 100%. Kami kirim ulang atau refund, tanpa pertanyaan.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-lebaran-950 py-8 border-t border-emas-500/20">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <p class="text-gray-400 text-sm">
+                © 2025 7Green Merch. Semua hak dilindungi.
+            </p>
+            <p class="text-gray-500 text-xs mt-2">
+                E-Money Custom untuk kebutuhan personal maupun corporate.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-8 text-center transform scale-95 opacity-0 transition-all duration-300" id="modal-content">
+            <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <i class="fas fa-check text-green-600 text-3xl"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-2">Pesanan Berhasil!</h3>
+            <p class="text-gray-600 mb-6">Terima kasih telah memesan. Tim kami akan segera menghubungi Anda via WhatsApp untuk konfirmasi pembayaran.</p>
+            
+            <div class="bg-lebaran-50 rounded-xl p-4 mb-6">
+                <p class="text-sm text-gray-600">Nomor Pesanan:</p>
+                <p class="text-xl font-bold text-lebaran-700" id="order-number">#EM-001</p>
+            </div>
+            
+            <button onclick="closeModal()" class="w-full bg-gradient-to-r from-emas-500 to-emas-600 text-lebaran-900 font-bold py-3 rounded-xl">
+                Tutup
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Countdown Timer
+        function updateCountdown() {
+            const now = new Date();
+            const endOfDay = new Date();
+            endOfDay.setHours(23, 59, 59, 999);
+            
+            let diff = endOfDay - now;
+            
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            // Top countdown
+            const countdownTop = document.getElementById('countdown-top');
+            if (countdownTop) {
+                countdownTop.textContent = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+            }
+            
+            // Large countdown
+            const hoursEl = document.getElementById('hours');
+            const minutesEl = document.getElementById('minutes');
+            const secondsEl = document.getElementById('seconds');
+            
+            if (hoursEl) hoursEl.textContent = String(hours).padStart(2, '0');
+            if (minutesEl) minutesEl.textContent = String(minutes).padStart(2, '0');
+            if (secondsEl) secondsEl.textContent = String(seconds).padStart(2, '0');
+        }
+        
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Sticky CTA Mobile
+        window.addEventListener('scroll', function() {
+            const stickyCta = document.getElementById('sticky-cta');
+            const heroSection = document.querySelector('section');
+            
+            if (heroSection) {
+                const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
+                
+                if (window.pageYOffset > heroBottom) {
+                    stickyCta.classList.remove('translate-y-full');
+                } else {
+                    stickyCta.classList.add('translate-y-full');
+                }
+            }
+        });
+
+        // Scroll to form
+        function scrollToForm() {
+            document.getElementById('order-form').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Quantity Change
+        function changeQty(delta) {
+            const qtyInput = document.getElementById('quantity');
+            let newQty = parseInt(qtyInput.value) + delta;
+            if (newQty < 1) newQty = 1;
+            if (newQty > 50) newQty = 50;
+            qtyInput.value = newQty;
+            updateSummary();
+        }
+
+        // Update Summary
+        function updateSummary() {
+            const qty = parseInt(document.getElementById('quantity').value);
+            // Bulk pricing: 10+ pcs = Rp50.000, below = Rp55.000
+            const pricePerUnit = qty >= 10 ? 50000 : 55000;
+            const total = qty * pricePerUnit;
+            
+            document.getElementById('price-per-unit').textContent = 'Rp' + pricePerUnit.toLocaleString('id-ID');
+            document.getElementById('summary-qty').textContent = qty;
+            document.getElementById('summary-total').textContent = 'Rp' + total.toLocaleString('id-ID');
+        }
+
+        const qtyInput = document.getElementById('quantity');
+        if (qtyInput) {
+            qtyInput.addEventListener('change', updateSummary);
+        }
+
+        // Form Submit
+        function handleSubmit(e) {
+            e.preventDefault();
+            
+            const btn = document.getElementById('submit-btn');
+            const originalText = btn.innerHTML;
+            
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Memproses...';
+            
+            // Simulate processing
+            setTimeout(() => {
+                const orderNum = '#EM-' + String(Math.floor(Math.random() * 9000) + 1000);
+                document.getElementById('order-number').textContent = orderNum;
+                
+                const modal = document.getElementById('success-modal');
+                const content = document.getElementById('modal-content');
+                
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                
+                setTimeout(() => {
+                    content.classList.remove('scale-95', 'opacity-0');
+                    content.classList.add('scale-100', 'opacity-100');
+                }, 10);
+                
+                btn.disabled = false;
+                btn.innerHTML = originalText;
+                document.getElementById('checkout-form').reset();
+                updateSummary();
+            }, 1500);
+        }
+
+        // Close Modal
+        function closeModal() {
+            const modal = document.getElementById('success-modal');
+            const content = document.getElementById('modal-content');
+            
+            content.classList.remove('scale-100', 'opacity-100');
+            content.classList.add('scale-95', 'opacity-0');
+            
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }, 300);
+        }
+
+        // Simulate stock decreasing
+        setInterval(() => {
+            const stockText = document.querySelector('.stock-counter span.text-lg, .bg-red-50 span.text-xl');
+            if (stockText) {
+                const currentStock = parseInt(stockText.textContent || '43');
+                if (currentStock > 10 && Math.random() > 0.8) {
+                    stockText.textContent = currentStock - 1;
+                }
+            }
+        }, 45000);
+    </script>
+
+    <!-- Meta Pixel Code (Placeholder) -->
+    <script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', 'YOUR_PIXEL_ID');
+        fbq('track', 'PageView');
+    </script>
+    <noscript>
+        <img height="1" width="1" style="display:none" 
+        src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"/>
+    </noscript>
+</body>
+</html>
